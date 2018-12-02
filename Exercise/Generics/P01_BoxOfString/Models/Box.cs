@@ -1,17 +1,36 @@
-﻿namespace P01_BoxOfString.Models
+﻿using System.Collections.Generic;
+using System.Text;
+
+namespace P01_BoxOfString.Models
 {
     public class Box<T>
     {
-        private readonly T _item;
-
-        public Box(T item)
+        public List<T> Items
         {
-            _item = item;
+            get; set;
+        }
+
+        public Box(List<T> items)
+        {
+            Items = items;
+        }
+
+        public void Swap(int index1, int index2)
+        {
+            var firstElement = Items[index1];
+            Items[index1] = Items[index2];
+            Items[index2] = firstElement;
         }
 
         public override string ToString()
         {
-            return $"{_item.GetType()}: {_item.ToString()}";
+            var sb = new StringBuilder();
+            foreach (var item in Items)
+            {
+                sb.Append($"{item.GetType().FullName}: {item.ToString()}\n");
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }

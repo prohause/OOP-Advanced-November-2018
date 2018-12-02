@@ -8,20 +8,23 @@
     {
         public static void Main(string[] args)
         {
-            IList<Box<int>> myList = new List<Box<int>>();
+            var myList = new List<string>();
 
             var lineCount = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < lineCount; i++)
             {
-                var input = int.Parse(Console.ReadLine());
-                myList.Add(new Box<int>(input));
+                var input = Console.ReadLine();
+                myList.Add(input);
             }
 
-            foreach (var box in myList)
-            {
-                Console.WriteLine(box.ToString());
-            }
+            var myBox = new Box<string>(myList);
+            var tokens = Console.ReadLine().Split(" ");
+            var index1 = int.Parse(tokens[0]);
+            var index2 = int.Parse(tokens[1]);
+            myBox.Swap(index1, index2);
+
+            Console.WriteLine(myBox.ToString());
         }
     }
 }
